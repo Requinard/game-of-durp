@@ -1,5 +1,7 @@
 package matrix;
 
+import com.google.common.base.Preconditions;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,13 +24,10 @@ public class GameOfLife {
     }
 
     public GameOfLife(int width, int height, int fillChance) {
-        // Check input params
-        if (fillChance < 1 || fillChance > 100) {
-            throw new IllegalArgumentException("Fill chance has to be between 1 and 100");
-        }
-        if (width <= 0) {
-            throw new IllegalArgumentException("Width must be higher then 0");
-        }
+        Preconditions.checkArgument(fillChance < 1 || fillChance > 100,"Fill chance has to be between 1 and 100");
+        Preconditions.checkArgument(width<=0, "Width must be greater then 0");
+        Preconditions.checkArgument(height<=0, "Height must be greater then 0");
+
         if (height <= 0) {
             throw new IllegalArgumentException("Height must be higher then 0");
         }
